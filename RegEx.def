@@ -1,0 +1,7 @@
+LIBRARY    "RegEx"
+
+EXPORTS
+GetClassObject
+DestroyObject
+GetClassNames
+SetPlatformCapabilities
