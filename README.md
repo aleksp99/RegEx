@@ -15,6 +15,7 @@
 	
 		//ru
 		Regex = Новый("AddIn.boost.RegEx");
+		Сообщить(Regex.Версия());
 		Regex.Шаблон = "а.";
 		Regex.Текст = "01234аё7ас";
 		Пока Regex.Найти() Цикл 
@@ -25,6 +26,7 @@
 	
 		//en
 		Regex = Новый("AddIn.boost.RegEx");
+		Сообщить(Regex.Version());
 		Regex.Pattern = "а.";
 		Regex.Text = "01234аё7ас";
 		Пока Regex.Найти() Цикл 
