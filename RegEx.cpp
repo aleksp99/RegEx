@@ -225,7 +225,7 @@ bool RegEx::SetPropVal(const long lPropNum, tVariant *varPropVal){
 		if (TV_VT(varPropVal) != VTYPE_PWSTR)
 			return false;
         pattern = (wchar_t*)(varPropVal->pstrVal);
-		regex_expr = boost::wregex(std::wstring(pattern.begin(), pattern.end()), boost::regex::perl);
+		regex_expr = boost::wregex(std::wstring(pattern.begin(), pattern.end()));//boost::regex::perl
         if (wtext.length() != 0) {
             start = wtext.begin();
             end = wtext.end();
@@ -360,21 +360,22 @@ bool RegEx::CallAsFunc(const long lMethodNum,
     case eMethSearch: {
         if (pattern.length() == 0 | wtext.length() == 0)
             return false;
-        if (result.size() != 0)
+        if (start != wtext.begin())
             position += result.length();
         if (boost::regex_search(start, end, result, regex_expr)) {
+            if (position == 0)
+                position++;
             position += result.position();
             start = result[0].second;
             pvarRetValue->bVal = true;
             TV_VT(pvarRetValue) = VTYPE_BOOL;
-            return true;
         }
         else {
             position = 0;
             pvarRetValue->bVal = false;
             TV_VT(pvarRetValue) = VTYPE_BOOL;
-            return true;
         }
+        return true;
     }
     default:
         return false;
