@@ -54,7 +54,7 @@ std::wstring::const_iterator start, end;
 boost::match_results<std::wstring::const_iterator> result;
 std::wstring pattern;
 std::wstring wtext;
-uint8_t position = 0;
+uint32_t position = 0;
 
 const wchar_t* kComponentVersion = L"1.0";
 
@@ -200,14 +200,14 @@ bool RegEx::GetPropVal(const long lPropNum, tVariant* pvarPropVal)
         return true;
     case ePropPosition:
         if (position != 0) {
-            TV_VT(pvarPropVal) = VTYPE_UI1;
-            TV_UI1(pvarPropVal) = position;
+            TV_VT(pvarPropVal) = VTYPE_UI4;
+            TV_UI4(pvarPropVal) = position;
         }
         return true;
     case ePropLength:
         if (position != 0) {
-            TV_VT(pvarPropVal) = VTYPE_UI1;
-            TV_UI1(pvarPropVal) = result.length();
+            TV_VT(pvarPropVal) = VTYPE_UI4;
+            TV_UI4(pvarPropVal) = result.length();
         }
         return true;
     case ePropValue:
